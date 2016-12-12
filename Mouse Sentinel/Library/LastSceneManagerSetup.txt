@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/Mouse Sentinel.unity
+  isLoaded: 1
+  isActive: 1
