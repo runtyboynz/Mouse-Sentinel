@@ -7,12 +7,16 @@ public class Zomb1Animator : MonoBehaviour {
 
 	public bool bodyDying = false;
 
+	private Vector3 recordBodyLoc;
+
 	//private float shuffle;
 	//private float running;
 
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
+
+		recordBodyLoc = this.transform.position;
 
 		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
@@ -25,11 +29,20 @@ public class Zomb1Animator : MonoBehaviour {
 			anim.Play ("Zomb1Running", -1, 0f);
 		}
 	} 
+
+	void Update () {
+
+		if (bodyDying) {
+
+			transform.position = recordBodyLoc;
+		}
+	}
 	
 	// Update is called once per frame
 	void OnMouseDown () {
 
 		bodyDying = true;
+		recordBodyLoc = this.transform.position;
 
 		DeathAnimationsExplode ();
 		// Slow down head //
@@ -57,7 +70,7 @@ public class Zomb1Animator : MonoBehaviour {
 	}
 
 	public void DeathAnimationsFallDown() {
-			
+
 		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
 		if (n == 0) {

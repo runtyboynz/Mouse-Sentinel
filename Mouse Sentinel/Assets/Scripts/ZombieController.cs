@@ -9,6 +9,7 @@ public class ZombieController : MonoBehaviour {
 	GameObject CPU;
 
 	private int moveSpeed;
+	public bool zombieStop = false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +27,9 @@ public class ZombieController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		this.gameObject.transform.position = Vector3.MoveTowards (transform.position, CPU.transform.position, (moveSpeed * Time.deltaTime));
-	
+		if (!zombieStop) {
+			this.gameObject.transform.position = Vector3.MoveTowards (transform.position, CPU.transform.position, (moveSpeed * Time.deltaTime));
+		}
 	}
 
 	public void changeSpeed(int newSpeed) {

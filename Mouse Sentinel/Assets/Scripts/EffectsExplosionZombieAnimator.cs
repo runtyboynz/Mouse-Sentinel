@@ -17,9 +17,14 @@ public class EffectsExplosionZombieAnimator : MonoBehaviour {
 	void OnMouseDown ()
 	{
 		anim.Play ("Zomb1FaceExplosion1", -1, 0f);
+		this.gameObject.transform.parent.GetComponent<ZombieController> ().zombieStop = true;
 
-		if (this.gameObject.transform.parent.GetChild (0).GetComponent<Zomb1Animator> ().bodyDying == false) {
-			this.gameObject.transform.parent.GetChild (0).GetComponent<Zomb1Animator> ().DeathAnimationsFallDown ();
+
+		if (this.gameObject.transform.parent.GetChild (0) != null) {
+			
+			if (this.gameObject.transform.parent.GetChild (0).GetComponent<Zomb1Animator> ().bodyDying == false) {
+				this.gameObject.transform.parent.GetChild (0).GetComponent<Zomb1Animator> ().DeathAnimationsFallDown ();
+			}
 		}
 	}
 
