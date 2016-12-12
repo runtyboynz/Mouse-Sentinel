@@ -18,7 +18,7 @@ public class Zomb1Animator : MonoBehaviour {
 
 		recordBodyLoc = this.transform.position;
 
-		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
+		int n = Random.Range (0, 1);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
 		if (n == 0) 
 		{
@@ -55,7 +55,7 @@ public class Zomb1Animator : MonoBehaviour {
 
 		if (bodyDying) {
 
-			int n = Random.Range (0, 3);//Chooses a random number between 0,1, or 2. Then plays that animation.
+			int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
 			if (n == 0) {
 				anim.Play ("Zomb1BodyShot", -1, 0f);

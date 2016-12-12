@@ -25,8 +25,8 @@ public class ZombieController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update () 
+	{
 		if (!zombieStop) {
 			this.gameObject.transform.position = Vector3.MoveTowards (transform.position, CPU.transform.position, (moveSpeed * Time.deltaTime));
 		}
