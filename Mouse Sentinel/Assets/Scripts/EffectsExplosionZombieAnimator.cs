@@ -16,7 +16,7 @@ public class EffectsExplosionZombieAnimator : MonoBehaviour {
 	// Update is called once per frame
 	void OnMouseDown ()
 	{
-		int n = Random.Range (0, 1);//Chooses a random number between 0,1, or 2. Then plays that animation.
+		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
 		if (n == 0) 
 		{
