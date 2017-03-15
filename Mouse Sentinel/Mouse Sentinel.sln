@@ -1,7 +1,7 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{D3EB80A9-18CA-6E63-BA0A-4440E4E74516}") = "Mouse Sentinel", "Assembly-CSharp.csproj", "{DDD91578-B814-4F32-DA6A-A76ECF81D64C}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mouse Sentinel", "Assembly-CSharp.csproj", "{DDD91578-B814-4F32-DA6A-A76ECF81D64C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
