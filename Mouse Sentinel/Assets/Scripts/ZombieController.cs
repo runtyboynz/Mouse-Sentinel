@@ -29,6 +29,8 @@ public class ZombieController : MonoBehaviour {
 	{
 		if (!zombieStop) {
 			this.gameObject.transform.position = Vector3.MoveTowards (transform.position, CPU.transform.position, (moveSpeed * Time.deltaTime));
+		} else {
+			this.gameObject.transform.position = Vector3.MoveTowards (transform.position, transform.position, 0);
 		}
 	}
 

@@ -9,6 +9,11 @@ public class ZombieHead : MonoBehaviour {
 
 	public ParticleSystem particle;
 
+	public GameObject floor;
+
+	public GameObject zombieBody;
+
+
 	//private float shuffle;
 	//private float running;
 
@@ -20,37 +25,37 @@ public class ZombieHead : MonoBehaviour {
 	// Update is called once per frame
 	void OnMouseDown ()
 	{
+		AnimationsHeadExplode ();
+	}
+
+
+	public void AnimationsHeadExplode() {
+
+		floor.GetComponent<BoxCollider2D> ().enabled = true;
+		
 		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
-		if (n == 0) 
-		{
-			anim.Play ("Zomb1FaceExplosion1", -1, 0f);
-			this.gameObject.transform.parent.GetComponent<ZombieController> ().zombieStop = true;
-		} 
-		if (n == 1) 
-		{
-			anim.Play ("Zomb1FaceExplosion2", -1, 0f);
-			this.gameObject.transform.parent.GetComponent<ZombieController> ().zombieStop = true;
+		switch (n) {
+		case 0:
+			anim.SetBool("HeadDeath01", true);
+			break;
+		case 1:
+			anim.SetBool("HeadDeath02", true);
+			break;
 		}
 
-		if (this.gameObject.transform.parent.GetChild (0) != null) 
-		{
-			if (this.gameObject.transform.parent.GetChild (0).GetComponent<Zomb1Animator> ().bodyDying == false) 
-			{
-				this.gameObject.transform.parent.GetChild (0).GetComponent<Zomb1Animator> ().DeathAnimationsFallDown ();
-			}
+		transform.parent.GetComponent<ZombieController> ().zombieStop = true;
+		if (zombieBody) {
+			zombieBody.GetComponent<ZombieBody> ().AnimationsBodyFallDown ();
 		}
+		particle.gameObject.SetActive (true);
+
 	}
+
 
 	public void DestroyZombieHead() {
 
-		//transform.GetChild(3).
-
-		//Destroy(this.gameObject);
-		//Destroy(this.gameObject.transform.parent.gameObject);
-
-
+		Destroy(this.gameObject.transform.parent.gameObject);
+		Destroy(this.gameObject);
 	}
-	//anim.SetFloat ("inputH", inputH);
-	//anim.SetFloat ("inputV", inputV);
 }

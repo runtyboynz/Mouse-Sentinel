@@ -40,8 +40,8 @@ public class EffectsExplosionZombieAnimator : MonoBehaviour {
 
 	public void DestroyZombieHead() {
 
-		Destroy(this.gameObject);
-		Destroy(this.gameObject.transform.parent.gameObject);
+	//	Destroy(this.gameObject);
+	//	Destroy(this.gameObject.transform.parent.gameObject);
 
 	}
 		//anim.SetFloat ("inputH", inputH);

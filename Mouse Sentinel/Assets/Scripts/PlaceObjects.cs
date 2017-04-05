@@ -109,7 +109,7 @@ public class PlaceObjects : MonoBehaviour {
 				zombie.transform.Rotate (Vector3.up, 180);
 				// move head forawrd //
 				Transform head = zombie.gameObject.transform.GetChild (0).transform;
-				Vector3 vect = new Vector3 (head.position.x, head.position.y, head.position.z + 0.2f);
+				Vector3 vect = new Vector3 (head.position.x, head.position.y, head.position.z + 2f); // <<<<<<< not working
 				head.transform.position = vect;
 
 			}

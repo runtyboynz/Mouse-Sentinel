@@ -6,94 +6,84 @@ public class ZombieBody : MonoBehaviour {
 
 	private Animator anim;
 
-	public bool bodyDying = false;
+	public GameObject zombieHead;
 
-	private Vector3 recordBodyLoc;
+	public GameObject floor;
 
-	ParticleSystem smokeParticle;
-
-	//private float shuffle;
-	//private float running;
+	public ParticleSystem particle;
 
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
 
-		recordBodyLoc = this.transform.position;
+		anim.SetBool("ZombieShuffle", true);
 
-		smokeParticle = GetComponentInChildren<ParticleSystem> ();
-
-		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
-
-		if (n == 0) 
-		{
-			anim.Play ("Zomb1Shuffle", -1, 0f);
-		} 
-		if (n == 1) 
-		{
-			anim.Play ("Zomb1Running", -1, 0f);
-		}
 	} 
 
 	void Update () {
 
-		if (bodyDying) {
-
-			transform.position = recordBodyLoc;
-		}
 	}
 
 	// Update is called once per frame
 	void OnMouseDown () {
 
-		bodyDying = true;
-		recordBodyLoc = this.transform.position;
-
-		var emission = smokeParticle.emission;
-		emission.enabled = true;
-		DeathAnimationsExplode ();		
-		// Slow down head //
-		this.gameObject.transform.parent.GetComponent<ZombieController>().changeSpeed(1);
-
+		AnimationsBodyExplode ();
 	}
 
 
-	public void DeathAnimationsExplode() {
+	public void AnimationsBodyExplode() {
 
-		if (bodyDying) {
+		floor.GetComponent<BoxCollider2D> ().enabled = true;
 
-			int n = Random.Range (0, 3);//Chooses a random number between 0,1, or 2. Then plays that animation.
+		int n = Random.Range (0, 3);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
-			if (n == 0) {
-				anim.Play ("Zomb1BodyShot", -1, 0f);
-			} 
-			if (n == 1) {
-				anim.Play ("Zomb1BodyShot2", -1, 0f);
-			} 
-			if (n == 2) {
-				anim.Play ("Zomb1BodyShot3", -1, 0f);
-			} 
+		switch (n) {
+		case 0:
+			anim.SetBool ("BodyDeath01", true);
+			break;
+		case 1:
+			anim.SetBool ("BodyDeath02", true);
+			break;
+		case 2:
+			anim.SetBool ("BodyDeath03", true);
+			break;
 		}
+
+		transform.parent.GetComponent<ZombieController> ().zombieStop = true;
+		if (zombieHead) {
+			zombieHead.GetComponent<CircleCollider2D> ().enabled = true;
+			zombieHead.GetComponent<Rigidbody2D> ().gravityScale = 1;
+		}
+		particle.gameObject.SetActive (true);
 	}
 
-	public void DeathAnimationsFallDown() {
+
+	public void AnimationsBodyFallDown() {
+
+		floor.GetComponent<BoxCollider2D> ().enabled = true;
 
 		int n = Random.Range (0, 2);//Chooses a random number between 0,1, or 2. Then plays that animation.
 
-		if (n == 0) {
-			anim.Play ("Zomb1Death", -1, 0f);
+		switch (n) {
+		case 0:
+			anim.SetBool ("FallDeath01", true);
+			break;
+		case 1:
+			anim.SetBool ("FallDeath02", true);
+			break;
 		}
-		if (n == 1) {
-			anim.Play ("Zomb1Death2", -1, 0f);
+
+		transform.parent.GetComponent<ZombieController> ().zombieStop = true;
+		if (zombieHead) {
+			zombieHead.GetComponent<CircleCollider2D> ().enabled = true;
+			zombieHead.GetComponent<Rigidbody2D> ().gravityScale = 1;
 		}
+		//particle.gameObject.SetActive (true);
 	}
+
 
 	public void DestroyZombie() {
-
+		
 		Destroy(this.gameObject);
-
 	}
-
-	//anim.SetFloat ("inputH", inputH);
-	//anim.SetFloat ("inputV", inputV);
 }
