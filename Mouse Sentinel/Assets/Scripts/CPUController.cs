@@ -14,6 +14,6 @@ public class CPUController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("OH NO GAME OVER!!!!!!");
+	//	Debug.Log ("OH NO GAME OVER!!!!!!");
 	}
 }
